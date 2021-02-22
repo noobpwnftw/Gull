@@ -881,11 +881,7 @@ extern GSharedInfo SHARED[];
 extern GGlobalData DATA[];
 extern GPawnEntry  PAWNHASH[];
 extern GPVEntry    PVHASH[];
-#ifndef WINDOWS
 extern GEntry      HASH[];
-#else
-#define HASH        ((GEntry *)0x8000000)
-#endif
 
 jmp_buf CheckJump;
 
@@ -5267,7 +5263,7 @@ int main(int argc, char **argv)
 
     // Read override parameters from the environment (useful for debugging)
     unsigned numThreads = get_num_cpus();
-    size_t hashSize = 128 * (1 << 20);     // 128MB
+    size_t hashSize = (size_t)128 * (1 << 20);     // 128MB
     size_t syzygyProbeDepth = 1;
     SyzygyPath[0] = '\0';
     const char *val;

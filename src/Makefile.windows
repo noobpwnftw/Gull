@@ -17,13 +17,14 @@ ifeq ($(ARCH),x86-64-bmi2)
 endif
 CFLAGS += -DVERSION=$(VERSION)
 LDFLAGS= \
-    -Wl,--defsym=INFO=0x51010000 \
+    -Wl,--defsym=INFO=0x51020000 \
     -Wl,--defsym=SETTINGS=0x51000000 \
-    -Wl,--defsym=SHARED=0x51020000 \
+    -Wl,--defsym=SHARED=0x51040000 \
     -Wl,--defsym=DATA=0x50000000 \
     -Wl,--defsym=PAWNHASH=0x54000000 \
-    -Wl,--defsym=PVHASH=0x58000000 
-STRIP=x86_64-w64-mingw32-strip
+    -Wl,--defsym=PVHASH=0x58000000 \
+    -Wl,--defsym=HASH=0xF00000000 
+STRIP=strip
 
 help:
 	@echo 

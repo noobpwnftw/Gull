@@ -35,9 +35,6 @@
 #include <popcntintrin.h>
 #include <x86intrin.h>
 
-#define UINT64_MAX  0xFFFFFFFFFFFFFFFFull
-#define UINT32_MAX  0xFFFFFFFF
-#define UINT8_MAX   0xFF
 
 #define builtin_cpuid(f, ax, bx, cx, dx)    \
     __asm__ __volatile__ ("cpuid" : "=a" (ax), "=b" (bx), "=c" (cx), \
@@ -91,7 +88,7 @@ typedef struct
     HANDLE handle;
 } GHandleInfo;
 
-static GHandleInfo handleInfo[16] = {0};
+static GHandleInfo handleInfo[256] = {0};
 
 void *init_object(const char *object, size_t size, void *addr,
     bool create, bool readonly, bool map, const void *value)
